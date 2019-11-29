@@ -11,8 +11,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
+    "velocity-animate": "^2.0.5",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-draggable": "^2.0.3",
+    "vue-router": "^3.0.1",
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

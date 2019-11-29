@@ -51,14 +51,37 @@ export default {
 
           //弄一个监听事件，当鼠标按下时获取克隆当前拖拽对象的节点
           mousedown=(event)=>{
-            drag.rou_elm = (drag.old_elm).clone();
-            drag._x = (drag.old_elm).offset().left;
-            drag._x = (drag.old_elm).offset().top;
+            drag.rou_elm = $(drag.old_elm).clone();
+            drag._x = $(drag.old_elm).offset().left;
+            drag._y = $(drag.old_elm).offset().top;
 
+            //计算移动距离
             var e = event || window.event;
             drag._left = e.pageX - drag._x;
             drag._top = e.pageY - drag._Y;
+
+            //克隆时的效果
+            $(drag.rou_elm).css({
+              'position' : 'absolute',
+              'left' : drag._x,
+              'top' : drag._y,
+            })
+
+            //添加临时的节点
+            tmp = $(drag.old_elm).parent().append(drag.rou_elm);
+            drag.rou_elm=$(tmp).find(drag.rou_elm);
+            $(drag.rou_elm).css('cursor','move')
+          },
+
+          //鼠标点击后移动
+          mousemove=(event)=>{
+            //计算坐标
+            var e = event||window.event;
+            var x = e.pageX - drag._left;
+            var y = e.pageY - drag._top;
+
           }
+
 
         }
 
