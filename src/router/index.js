@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import PropsTest from '@/components/PropsTest'
 import Drag from '@/components/Drag'
+import Mixins from '@/components/Mixins'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path: '/Drag',
       name: 'Drag',
       component: Drag
+    },
+    {
+      path: '/Mixins',
+      name: 'Mixins',
+      component: Mixins
     },
   ]
 })

@@ -58,7 +58,7 @@
         <p v-if="show">字符弹跳</p>
       </transition>
       <!-- duration 属性定制一个显性的过渡持续时间 (以毫秒计) -->
-      <transition :duration='5000'>
+      <transition :duration='1000'>
       <!-- <transition :duration="{enter:500,leave:5000}"> -->
         <p v-if="show">设置动画进入时间和离开时间</p>
       </transition>
