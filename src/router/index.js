@@ -4,10 +4,20 @@ import HelloWorld from '@/components/HelloWorld'
 import PropsTest from '@/components/PropsTest'
 import Drag from '@/components/Drag'
 import Mixins from '@/components/Mixins'
+import Dragula from '@/components/Dragula'
+import LineEchart from '@/components/LineEchart'
+import Login from '@/components/loginfile/Login2'
+import GetYear from '@/components/GetYear'
+import Test from '@/components/Test'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
+    },
     {
       path: '/',
       name: 'HelloWorld',
@@ -28,5 +38,25 @@ export default new Router({
       name: 'Mixins',
       component: Mixins
     },
+    {
+      path: '/Dragula',
+      name: 'Dragula',
+      component: Dragula
+    },
+    {
+      path: '/LineEchart',
+      name: 'LineEchart',
+      component: LineEchart
+    },
+    {
+      path: '/GetYear',
+      name: 'GetYear',
+      component: GetYear
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test
+    }
   ]
 })

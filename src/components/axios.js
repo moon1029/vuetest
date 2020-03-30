@@ -2,7 +2,7 @@ import axios from 'axios'
 import queryString from 'queryString'  //转换格式包，无需下载
 
 var instance = axios.create({
-    baseURL: 'http://192.168.0.166:8090',
+    baseURL: 'http://192.168.0.166:8090',   //连接后台地址的
     timeout: 3000,   //如果请求花费了超过 `timeout` 的时间，请求将被中断
     // responseType: 'json',   //服务器响应的数据类型
     // headers: {       //自定义请求头内容K

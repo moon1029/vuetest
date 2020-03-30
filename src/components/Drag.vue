@@ -1,146 +1,62 @@
 <template>
-  <div class="container">
-    <div class="inner_box">
-      <div class="left_flex">
-        <ul class="left_ul">
-          <li v-for="(item,index) in models" :key="index">{{item.title}}</li>
-        </ul>
-      </div>
-      <div class="right_flex">
-        <div class="drag_one">
-          <p>这是一个拖拽框</p>
-          <div class="inner_drag">
-
-          </div>
-        </div>
-      </div>
-    </div>
+  <div id="app" @mousedown="move">
+    <!--绑定按下事件-->
+    {{positionX}}
+    {{positionY}}
   </div>
 </template>
+<style scoped>
+#app {
+  position: relative; /*定位*/
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  height: 200px;
+  background: #666; /*设置一下背景*/
+}
+</style>
 <script>
 export default {
   data() {
     return {
-      models: [
-        { id: 1, title: "模块1" },
-        { id: 2, title: "模块2" },
-        { id: 3, title: "模块3" }
-      ]
+      positionX: 0,
+      positionY: 0
     };
   },
-  methods:{
-    creatDrag(){
-      var drag={
-        //定义属性
-        class_name:null, //这里的是我拖拽的终点，也就是这些class_name允许拖拽放置，是容器
-        permitDrag:false, //拖拽对象是否可移动
-
-        _x:0, //我理解的是拖拽对象初始化的时候所在的x坐标
-        _y:0, //我y理解的是拖拽对象初始化的时候所在的y坐标
-        _left:0, //我y理解的是完成拖拽动作后，拖拽终点和一开始的拖拽对象水平距离
-        _top:0, //我y理解的是完成拖拽动作后，拖拽终点和一开始的拖拽对象垂直距离
-
-        old_elm:null, //拖拽对象
-        new_elm:null, //拖拽终点
-        rou_elm:null, //起点到终点的路径
-
-        //初始化
-        init(className){
-          //定义容器
-          drag.class_name=className;
-
-          //弄一个监听事件，当鼠标按下时获取克隆当前拖拽对象的节点
-          mousedown=(event)=>{
-            drag.rou_elm = $(drag.old_elm).clone();
-            drag._x = $(drag.old_elm).offset().left;
-            drag._y = $(drag.old_elm).offset().top;
-
-            //计算移动距离
-            var e = event || window.event;
-            drag._left = e.pageX - drag._x;
-            drag._top = e.pageY - drag._Y;
-
-            //克隆时的效果
-            $(drag.rou_elm).css({
-              'position' : 'absolute',
-              'left' : drag._x,
-              'top' : drag._y,
-            })
-
-            //添加临时的节点
-            tmp = $(drag.old_elm).parent().append(drag.rou_elm);
-            drag.rou_elm=$(tmp).find(drag.rou_elm);
-            $(drag.rou_elm).css('cursor','move')
-          },
-
-          //鼠标点击后移动
-          mousemove=(event)=>{
-            //计算坐标
-            var e = event||window.event;
-            var x = e.pageX - drag._left;
-            var y = e.pageY - drag._top;
-
-          }
-
-
-        }
-
-
-
-      }
+   methods:{
+        move(e){
+            let odiv = e.target;        //获取目标元素
+            
+            //算出鼠标相对元素的位置
+            //offsetLeft是页面到元素左边的距离，offsetTop是页面到元素上边的距离
+            //client是鼠标到页面的距离
+            let disX = e.clientX - odiv.offsetLeft;
+            let disY = e.clientY - odiv.offsetTop;
+            // console.log('client',e.clientX,e.clientY)
+            // console.log('odiv',odiv.offsetLeft,odiv.offsetTop)
+            // console.log('dis',disX,disY)
+            document.onmousemove = (e)=>{       //这个是鼠标按下之后拖动元素事件
+                //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置 
+                let left = e.clientX - disX;    
+                let top = e.clientY - disY;
+                //一开始我以为这个用odiv获取也可以，然后试了一下，发现元素拖拽走了，鼠标无法移动，此方法不可行
+                //  let left = odiv.offsetLeft;    
+                // let top = e.clientY - disY;
+                // console.log('元素的位置',left,top)
+                //绑定元素位置到positionX和positionY上面
+                this.positionX = top;
+                this.positionY = left;
+                
+                //移动当前元素
+                odiv.style.left = left + 'px';
+                odiv.style.top = top + 'px';
+            };
+            document.onmouseup = (e) => {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        }    
+    
     }
-  }
 };
 </script>
-<style scoped>
-.container {
-  margin: 0 auto;
-  text-align: center;
-}
-.inner_box {
-  width: 90%;
-  display: flex;
-  overflow: auto;
-  height: 98vh;
-  margin: 0 auto;
-}
-.left_flex {
-  flex: 3;
-  border: 1px solid #000000;
-  border-radius: 15px;
-}
-.left_ul {
-  width: 200px;
-  margin-top: 20px;
-}
-.left_ul li {
-  width: 100%;
-  line-height: 40px;
-  list-style: none;
-  font-size: 16px;
-  margin-bottom: 20px;
-  background-color: #d8d2d2;
-}
-.right_flex {
-  flex: 9;
-  border: 1px solid #000000;
-  border-radius: 15px;
-  margin-left: 120px;
-  display: table-cell;
-  padding-top: 50px
-}
-.drag_one {
-  width: 90%;
-  height: 300px;
-  border-radius: 13px;
-  margin: 0 auto;
-  border: 1px solid #000;
-  box-shadow: 0 0 5px 5px #000;
-}
-.inner_drag{
-  width: 90%;
-  height: 200px;
-  margin: 0 auto;
-  border: 1px solid #000;
-}
-</style>
