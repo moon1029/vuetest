@@ -1,0 +1,77 @@
+/*登录页*****************************/
+@baseCoor:#ffffff;//基础文字色
+@selectRaduis:8px;//默认边角弧度
+
+
+/*主页面****************************************/
+// @mainBackColor:radial-gradient(#0E082B, #0A0010);
+// @mainBackColor:url("../assets/partBg.png") no-repeat 100% 100%;
+@tableBorder:#86e6fb; //表格边框颜色
+@textColor:#86e6fb; //主页面字体颜色
+@tablebaseColor:#666666; //表格基础色
+@btnColor:#666666; //按钮基本颜色
+@tableBgcolor:#0F092B !important;
+@fz-min:14px;
+@fz-middle:18px;
+@fz-max:20px;
+// 设置宽度
+.gw(@w){
+	width: @w;
+}
+// 设置宽高
+.size(@w,@h){
+    width: @w;
+    height: @h;
+}
+// flex布局，两端
+.spacebetween(flex) { 
+    display: flex; 
+    justify-content: space-between;
+ }
+ // flex布局，中间
+.spacecenter(flex) { 
+    display: flex; 
+    justify-content:center;
+ }
+ //浮动
+ .fl(@fl){
+     float: @fl;
+ }
+// 边框
+.border(){
+    border: 1px solid #86e6fb;
+}
+
+.bg(){
+    // background: url("../assets/partBg.png") no-repeat 100% 100%;
+}
+.loginBg(){
+    // background: url("../assets/loginBg.jpg") no-repeat 100% 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+input{
+    background: transparent;
+}
+input::-webkit-input-placeholder {
+    color:#666666;
+ }
+.baseBg(){
+    background: transparent;
+}
+/deep/  .el-checkbox__inner{
+    background: transparent !important;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+  }
+  th{
+    font-weight: normal;
+  }
+  tr,table{
+    border: 1px solid #86e6fb;
+  }

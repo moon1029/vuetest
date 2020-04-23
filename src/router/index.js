@@ -8,7 +8,10 @@ import Dragula from '@/components/Dragula'
 import LineEchart from '@/components/LineEchart'
 import Login from '@/components/loginfile/Login2'
 import GetYear from '@/components/GetYear'
-import Test from '@/components/Test'
+import Test from '@/components/Test'  /**这是head页面布局 */
+import Table from '@/components/Table'
+import box from '@/components/box'
+import tra01 from '@/components/mapfile/tra03'
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +60,21 @@ export default new Router({
       path: '/Test',
       name: 'Test',
       component: Test
+    },
+    {
+      path: '/Table',
+      name: 'Table',
+      component: Table
+    },
+    {
+      path: '/box',
+      name: 'box',
+      component: box
+    },
+    {
+      path: '/tra01',
+      name: 'tra01',
+      component: tra01
     }
   ]
 })
