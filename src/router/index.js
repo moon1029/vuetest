@@ -13,6 +13,7 @@ import Table from '@/components/Table'
 import box from '@/components/box'
 import tra01 from '@/components/mapfile/tra03'
 import websocket from '../components/websocketKnow/websocket'
+import bigBox from '../components/tankuang/bigBox'
 Vue.use(Router)
 
 export default new Router({
@@ -81,6 +82,11 @@ export default new Router({
       path: '/websocket',
       name: 'websocket',
       component: websocket
+    },
+    {
+      path: '/bigBox',
+      name: 'bigBox',
+      component: bigBox
     }
     
   ]
