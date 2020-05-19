@@ -1,12 +1,20 @@
 <template>
-  <div class="showwindows">这是弹框</div>
+  <div class="showwindows">
+    <button @click="close">隐藏</button>
+  </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      age:12
+    };
   },
-  methods: {}
+  methods: {
+    close(){
+      this.$emit("sendAge",this.age)
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

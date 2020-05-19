@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="showBox">点击显示弹框</button>
+    <button @click="showBox">点击显示弹框{{age}}</button>
     <div class="showWindow" v-if="showSonBox">
-      <sonBox></sonBox>
+      <sonBox @sendAge="getAgeData"></sonBox>
     </div>
   </div>
 </template>
@@ -12,12 +12,17 @@ export default {
   components: { sonBox },
   data() {
     return {
-      showSonBox: false
+      showSonBox: false,
+      age:"",
     };
   },
   methods: {
     showBox() {
       this.showSonBox = true;
+    },
+    getAgeData(data){
+      this.age = data;
+      console.log(data)
     }
   }
 };

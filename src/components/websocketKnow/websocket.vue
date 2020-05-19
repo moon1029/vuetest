@@ -1,5 +1,8 @@
 <template>
-  <div class="test"></div>
+  <div class="test">
+    <input type="text" v-model="name">
+    <button @click="websocketsend(name)">发送</button>
+  </div>
 </template>
 
 <script>
@@ -7,7 +10,8 @@ export default {
   name: "test",
   data() {
     return {
-      websock: null
+      websock: null,
+      name:""
     };
   },
   created() {
@@ -19,7 +23,7 @@ export default {
   methods: {
     initWebSocket() {
       //初始化weosocket
-      const wsuri = "ws://192.168.2.142:8764/imserver/1";
+      const wsuri = "ws://139.9.209.245:8888/connect";
       this.websock = new WebSocket(wsuri);
       this.websock.onmessage = this.websocketonmessage;
       this.websock.onopen = this.websocketonopen;
@@ -30,21 +34,23 @@ export default {
       //连接建立之后执行send方法发送数据
       let actions = { test: "12345" };
       this.websocketsend(JSON.stringify(actions));
-    console.log("连接成功")
+      console.log("连接成功");
     },
     websocketonerror() {
       //连接建立失败重连
       this.initWebSocket();
     },
     websocketonmessage(e) {
-      //数据接收
-    //   const redata = JSON.parse(e.data);
-    //     let actions = { test: "12345" };
-    //   this.websocketsend(JSON.stringify(actions));
+      // 数据接收
+        // const redata = JSON.parse(e.data);
+      //     let actions = { test: "12345" };
+      //   this.websocketsend(JSON.stringify(actions));
+      console.log("111111111111",e.data)
     },
     websocketsend(Data) {
       //数据发送
       this.websock.send(Data);
+      console.log(Data)
     },
     websocketclose(e) {
       //关闭
