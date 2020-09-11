@@ -118,36 +118,11 @@ export default {
       if (this.form.seccode != this.checkCode) {
         this.$message({
           message: "验证码错误，注意大写字母",
-          type: "warning"
+          type: "warning"  
         });
         this.createCode();
         return false;
       }
-      var fd = new FormData();
-      fd.append("username", this.form.username);
-      fd.append("password", this.form.password);
-      loginPost(fd)
-        .then(res => {
-          console.log(res);
-          if (res.code == 200) {
-            localStorage.setItem("myToken", res.obj.token);
-            localStorage.setItem("username", res.obj.userName);
-            this.$message({
-              message: "登录成功",
-              type: "success"
-            });
-            this.$router.push("/");
-            // this.setUserName(res.obj.userName);
-          } else {
-            this.$message({
-              message: res.content,
-              type: "warning"
-            });
-          }
-        })
-        .catch(res => {
-          console.log(res);
-        });
     }
   }
 };

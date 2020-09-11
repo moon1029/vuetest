@@ -14,6 +14,12 @@ import AMap from 'vue-amap';
 import axios from 'axios';
 
 Vue.prototype.$axios = axios;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+Vue.config.productionTip = false
+axios.defaults.baseURL = HOST
+// axios.defaults.baseURL = '/api'    //这个就是默认调用config的index.js文件的proxyTable
+window.axios = axios
+
 Vue.config.productionTip = false
 Vue.use(animate)
 Vue.use(ElementUI)
@@ -35,6 +41,7 @@ AMap.initAMapApiLoader({
 });
 /* eslint-disable no-new */
 Vue.prototype.$echarts = echarts
+
 new Vue({
   el: '#app',
   router,

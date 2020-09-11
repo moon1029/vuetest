@@ -2,6 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -18,9 +19,16 @@ const createLintingRule = () => ({
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
-
+//我的这个配置方式经过测试，只有这里生效，这边控制IP地址，应该是由main.js那边设置的
+var DEV_HOST = JSON.stringify('http://218.201.45.132:80/api')
+var PUB_HOST = JSON.stringify('http://218.201.45.132:80/api')
 module.exports = {
   context: path.resolve(__dirname, '../'),
+  plugins: [
+    new webpack.DefinePlugin({
+      HOST: process.env.NODE_ENV === 'production' ? PUB_HOST : DEV_HOST
+    })
+  ],
   entry: {
     app: './src/main.js'
   },

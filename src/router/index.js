@@ -6,7 +6,7 @@ import Drag from '@/components/Drag'
 import Mixins from '@/components/Mixins'
 import Dragula from '@/components/Dragula'
 import LineEchart from '@/components/LineEchart'
-import Login from '@/components/loginfile/Login2'
+import Login from '@/components/loginfile/Login'
 import GetYear from '@/components/GetYear'
 import Test from '@/components/Test'  /**这是head页面布局 */
 import Table from '@/components/Table'
@@ -14,6 +14,8 @@ import box from '@/components/box'
 import tra01 from '@/components/mapfile/tra03'
 import websocket from '../components/websocketKnow/websocket'
 import bigBox from '../components/tankuang/bigBox'
+import imagChoose from '../components/example/imagChoose'
+import symbol from '../components/promise/symbol'
 Vue.use(Router)
 
 export default new Router({
@@ -87,6 +89,16 @@ export default new Router({
       path: '/bigBox',
       name: 'bigBox',
       component: bigBox
+    },
+    {
+      path: '/imagChoose',
+      name: 'imagChoose',
+      component: imagChoose
+    },
+    {
+      path: '/symbol',
+      name: 'symbol',
+      component: symbol
     }
     
   ]

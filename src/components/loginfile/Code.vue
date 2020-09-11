@@ -1,4 +1,5 @@
 <template>
+<!-- 验证码 -->
   <div class="s-canvas">
     <canvas id="s-canvas" :width="contentWidth" :height="contentHeight" @click="drawPic"></canvas>
   </div>

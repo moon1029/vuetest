@@ -1,76 +1,41 @@
 <template>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>        <input type="checkbox" id="test" class="test">
-<label for="test"></label></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="checkbox"></td>
-                </tr>
-            </tbody>
-        </table>
-
-    </div>
+  <div id="abc">
+    <ul>
+      <li>lili</li>
+      <li>mary</li>
+    </ul>
+    <p id="say"></p>
+    <button @click="getNew">我是按钮</button>
+  </div>
 </template>
 <script>
+import $ from '../../node_modules/jquery'
 export default {
-    
-}
+  data() {
+    return {};
+  },
+  created() {},
+  methods: {
+    getNew() {
+      let d = document.createDocumentFragment();
+      d.appendChild(document.getElementsByTagName("LI")[0]);
+      console.log(d.childNodes[0].childNodes[0].nodeValue);    
+      d.childNodes[0].childNodes[0].nodeValue = "Milk";
+      document.getElementsByTagName("UL")[0].appendChild(d);
+
+      //createTextNode 创建文本节点
+      let p = document.createTextNode("HELLO");
+      let a = document.createElement
+      $('#say').append(p);
+      console.log(p)
+
+      //createElement 创建元素节点
+      let btn = document.createElement("BUTTON");
+      btn.appendChild(p);
+      document.body.appendChild(btn);
+    }, 
+  },
+};
 </script>
 <style scoped>
-.check {
-    visibility: hidden;
-}
- .check +label{
-        width: 18px;
-        height: 18px;
-        background-color: #0085d0;
-        display: block;
-        position: relative;
-        border-radius: 2px;
-        cursor: pointer;
-        overflow: hidden;
-    }
-    .check:checked {
-        content: "√";       /*这里设置选中之后的显示内容*/
-        width: 18px;
-        height: 18px;
-        display: block;
-        color: #ffffff;
-        text-align: center;
-        font-weight: bolder;
-        line-height: 18px;
-    }
-
-     #test{
-        visibility: hidden;
-    }
-
-    #test +label{
-        width: 18px;
-        height: 18px;
-        background-color: #c07721;
-        display: block;
-        position: relative;
-        top: -18px;
-        left: -2px;
-        border-radius: 4px;
-        cursor: pointer;
-        overflow: hidden;
-    }
-
-    #test:checked +label:before{
-        content: "√";       /*这里设置选中之后的显示内容*/
-        width: 18px;
-        height: 18px;
-        display: block;
-        color: #ffffff;
-        text-align: center;
-        font-weight: bolder;
-        line-height: 18px;
-    }
 </style>
